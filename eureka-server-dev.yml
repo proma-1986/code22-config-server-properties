@@ -12,8 +12,8 @@ eureka:
     lease-renewal-interval-in-seconds: 10    # More frequent renewals
     lease-expiration-duration-in-seconds: 30  # Quicker expiration
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
