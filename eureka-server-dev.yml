@@ -8,7 +8,7 @@ spring:
 eureka:
   instance:
     hostname: localhost
-    prefer-ip-address: false
+    prefer-ip-address: true
     lease-renewal-interval-in-seconds: 10    # More frequent renewals
     lease-expiration-duration-in-seconds: 30  # Quicker expiration
   client:
