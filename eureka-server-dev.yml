@@ -1,24 +1,36 @@
+server:
+  port: 8761
+
 spring:
   application:
     name: eureka-server
-  boot:
-    admin:
-      context-path: /admin
-server:
-  port: 8761
+
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: false
+    lease-renewal-interval-in-seconds: 10    # More frequent renewals
+    lease-expiration-duration-in-seconds: 30  # Quicker expiration
   client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
-    waitTimeInMsWhenSyncEmpty: 5
-    renewalPercentThreshold: 0.75
-    expectedClientRenewalIntervalSeconds: 30
+    enable-self-preservation: false           # Disable self-preservation for development
+    renewal-percent-threshold: 0.85
+    renewal-threshold-update-interval-ms: 900000
+    expected-client-renewal-interval-seconds: 10
+    eviction-interval-timer-in-ms: 15000     # More frequent eviction
+    response-cache-update-interval-ms: 3000   # More frequent cache updates
+    use-read-only-response-cache: false       # Disable response cache for development
 
+logging:
+  level:
+    com.netflix.eureka: DEBUG
+    com.netflix.discovery: DEBUG
+    org.springframework.cloud.netflix.eureka: DEBUG
+    com.netflix.eureka.registry: TRACE   
 
 
       
